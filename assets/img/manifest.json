@@ -1,0 +1,165 @@
+{
+ "players": {
+  "riccardo-lucon": {
+   "name": "Riccardo Lucon",
+   "exult": true
+  },
+  "andrea-damico": {
+   "name": "Andrea D’Amico",
+   "exult": true
+  },
+  "denis-gerootto": {
+   "name": "Denis Gerootto",
+   "exult": false
+  },
+  "domenico-costantino": {
+   "name": "Domenico Costantino",
+   "exult": false
+  },
+  "emanuele-ballardin": {
+   "name": "Emanuele Ballardin",
+   "exult": true
+  },
+  "francesco-marson": {
+   "name": "Francesco Marson",
+   "exult": false
+  },
+  "giovanni-schettino": {
+   "name": "Giovanni Schettino",
+   "exult": true
+  },
+  "giuseppe-calatozzo": {
+   "name": "Giuseppe Calatozzo",
+   "exult": true
+  },
+  "leonardo-avon": {
+   "name": "Leonardo Avon",
+   "exult": true
+  },
+  "luca-ravanelli": {
+   "name": "Luca Ravanelli",
+   "exult": true
+  },
+  "marco-raffin": {
+   "name": "Marco Raffin",
+   "exult": false
+  },
+  "mattia-crainich": {
+   "name": "Mattia Crainich",
+   "exult": true
+  },
+  "max-lisai": {
+   "name": "Max Lisai",
+   "exult": true
+  },
+  "riccardo-cozzi": {
+   "name": "Riccardo Cozzi",
+   "exult": true
+  },
+  "sasha-qualano": {
+   "name": "Sasha Qualano",
+   "exult": true
+  },
+  "stefano-mareschi": {
+   "name": "Stefano Mareschi",
+   "exult": true
+  },
+  "thomas-accatante": {
+   "name": "Thomas Accatante",
+   "exult": true
+  }
+ },
+ "partners": [
+  {
+   "file": "beatransport.webp",
+   "alpha": false,
+   "lum": 0
+  },
+  {
+   "file": "herbalife-h24.webp",
+   "alpha": true,
+   "lum": 36
+  },
+  {
+   "file": "metro.webp",
+   "alpha": false,
+   "lum": 0
+  },
+  {
+   "file": "mittelfersrl.webp",
+   "alpha": false,
+   "lum": 0
+  },
+  {
+   "file": "birreriamonaco.webp",
+   "alpha": false,
+   "lum": 0
+  },
+  {
+   "file": "cafferitz.webp",
+   "alpha": false,
+   "lum": 0
+  },
+  {
+   "file": "centrospecificodelsonno.webp",
+   "alpha": false,
+   "lum": 0
+  },
+  {
+   "file": "cordenonsgomme.webp",
+   "alpha": false,
+   "lum": 0
+  },
+  {
+   "file": "logocusapnobg.webp",
+   "alpha": true,
+   "lum": 150
+  },
+  {
+   "file": "studiodesibio.webp",
+   "alpha": false,
+   "lum": 0
+  },
+  {
+   "file": "studiodentisticizoi.webp",
+   "alpha": false,
+   "lum": 0
+  },
+  {
+   "file": "autofficina-cordenonese.webp",
+   "alpha": true,
+   "lum": -1
+  },
+  {
+   "file": "green-ed-giardini.webp",
+   "alpha": true,
+   "lum": -1
+  }
+ ],
+ "gallery": [
+  "foto-squadra.webp",
+  "shot-1160.webp",
+  "shot-1161.webp",
+  "shot-1162.webp",
+  "shot-1163.webp",
+  "shot-1164.webp",
+  "shot-1165.webp",
+  "shot-1166.webp",
+  "shot-1167.webp",
+  "shot-1168.webp",
+  "shot-1169.webp",
+  "shot-1170.webp",
+  "shot-1171.webp",
+  "shot-1172.webp",
+  "shot-1173.webp",
+  "shot-1174.webp",
+  "shot-1175.webp",
+  "shot-1176.webp",
+  "shot-1177.webp",
+  "shot-1178.webp",
+  "shot-1179.webp",
+  "shot-1180.webp",
+  "shot-1181.webp",
+  "shot-1182.webp"
+ ]
+}
