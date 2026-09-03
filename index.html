@@ -80,7 +80,9 @@
       </div>
       <div class="hero__photo hero-stagger">
         <div class="photo-frame">
-          <img src="/assets/img/brand/hero-squadra.webp" alt="La rosa dello Scafati Futsal Club al completo" fetchpriority="high">
+          <a href="/assets/img/brand/hero-squadra.webp" data-lightbox aria-label="Apri la foto della squadra a schermo intero">
+            <img src="/assets/img/brand/hero-squadra.webp" alt="La rosa dello Scafati Futsal Club al completo" fetchpriority="high">
+          </a>
         </div>
         <img class="hero__crest" src="/assets/img/brand/crest-black.png" alt="">
         <span class="hero__caption">La squadra al completo</span>
@@ -290,6 +292,21 @@
       </div>
     </div>
   </footer>
+
+  <!-- ================= LIGHTBOX FOTO HERO ================= -->
+  <div class="lightbox">
+    <img src="" alt="">
+    <button class="lightbox__btn lightbox__btn--close" aria-label="Chiudi">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <button class="lightbox__btn lightbox__btn--prev" aria-label="Precedente" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <button class="lightbox__btn lightbox__btn--next" aria-label="Successiva" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+    <span class="lightbox__count" style="display:none"></span>
+  </div>
 
   <script src="/assets/js/main.js"></script>
 </body>
