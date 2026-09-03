@@ -277,9 +277,17 @@ body.menu-open .menu__social { opacity: 1; transform: none; }
 
 /* ---- sponsor strip: static wall, no motion ---- */
 .sponsor-strip {
+  display: block;
   border-block: var(--line);
   padding: 1.1rem 0;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.3s var(--ease-snap);
 }
+.sponsor-strip:hover, .sponsor-strip:focus-visible {
+  background-color: rgba(22, 22, 22, 0.05);
+}
+.sponsor-strip:hover .sponsor-strip__row { color: var(--ink); }
 .sponsor-strip__row {
   display: flex; flex-wrap: wrap; justify-content: center;
   column-gap: 1.9rem; row-gap: 0.4rem;
