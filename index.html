@@ -1,36 +1,39 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
+<!doctype html>
+<html lang="it"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Squadra — A.S.D. Scafati Futsal Club</title>
-  <meta name="description" content="La rosa completa dello Scafati Futsal Club: tutte le figurine ufficiali dei nostri giocatori.">
+  <title>A.S.D. Scafati Futsal Club — Sito Ufficiale</title>
+  <meta name="description" content="Sito ufficiale dell'A.S.D. Scafati Futsal Club: la squadra, i giocatori, la gallery, i partner e tutte le novità dai nostri social.">
+  <meta property="og:title" content="A.S.D. Scafati Futsal Club">
+  <meta property="og:description" content="La squadra, i giocatori, la gallery e i partner dello Scafati Futsal Club.">
+  <meta property="og:image" content="/assets/img/brand/hero-squadra.webp">
   <link rel="icon" type="image/png" href="/assets/img/brand/favicon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
   <div class="atmosphere"></div>
   <div class="noise"></div>
 
+  <!-- ================= NAV ================= -->
   <header class="nav">
     <a class="nav__brand" href="/">
       <img src="/assets/img/brand/crest-black-192.png" alt="Stemma Scafati Futsal Club">
       <span>SCAFATI FUTSAL</span>
     </a>
     <nav class="nav__links" aria-label="Navigazione principale">
-      <a href="/">Home</a>
-      <a href="/squadra/" class="is-active">Squadra</a>
+      <a href="/" class="is-active">Home</a>
+      <a href="/squadra/">Squadra</a>
       <a href="/staff/">Staff</a>
       <a href="/galleria/">Galleria</a>
       <a href="/societa/">Società</a>
       <a href="/partner/">Partner</a>
     </nav>
     <div class="nav__cta">
-      <a class="btn" href="/#social">Seguici
-        <span class="btn__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+      <a class="btn" href="#social">Seguici
+        <span class="btn__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
       </a>
     </div>
     <button class="nav__burger" aria-label="Apri menu" aria-expanded="false"><span></span><span></span></button>
@@ -45,133 +48,207 @@
         <li><a href="/galleria/">Galleria</a></li>
         <li><a href="/societa/">Società</a></li>
         <li><a href="/partner/">Partner</a></li>
-        <li><a href="/#social">Social</a></li>
+        <li><a href="#social">Social</a></li>
       </ul>
       <div class="menu__social">
         <a class="social-pill" href="https://www.facebook.com/AsdScafatiFutsal/" target="_blank" rel="noopener" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.2-1.5 1.5-1.5h1.4V4.9c-.3 0-1.1-.1-2.1-.1-2.1 0-3.6 1.3-3.6 3.7V11H8.3v3h2.4v7h2.8Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.2-1.5 1.5-1.5h1.4V4.9c-.3 0-1.1-.1-2.1-.1-2.1 0-3.6 1.3-3.6 3.7V11H8.3v3h2.4v7h2.8Z"></path></svg>
         </a>
         <a class="social-pill" href="https://www.instagram.com/scafatifutsal/" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"></circle></svg>
         </a>
       </div>
     </div>
   </div>
 
-  <section class="page-hero">
-    <div class="wrap hero-stagger">
-      <span class="eyebrow">La rosa</span>
-      <h1 class="h-display">La <span class="accent">squadra</span></h1>
-      <p class="lead">Le figurine ufficiali dello Scafati Futsal Club. Passa il mouse su una card — o toccala da mobile — per vedere l'esultanza.</p>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero-stagger">
+        <span class="eyebrow">A.S.D. — Calcio a 5</span>
+        <h1 class="h-display hero__title">Scafati<br>Futsal <span class="accent">Club</span></h1>
+        <p class="lead">Una squadra, un gruppo di amici, una passione che si gioca sul parquet. Benvenuti nella casa ufficiale dello Scafati Futsal Club.</p>
+        <div class="hero__actions">
+          <a class="btn btn--solid" href="/squadra/">Scopri la squadra
+            <span class="btn__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+          </a>
+          <a class="btn" href="/galleria/">Guarda la gallery
+            <span class="btn__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+          </a>
+        </div>
+      </div>
+      <div class="hero__photo hero-stagger">
+        <div class="photo-frame">
+          <a href="/assets/img/brand/hero-squadra.webp" data-lightbox="" aria-label="Apri la foto della squadra a schermo intero">
+            <img src="/assets/img/brand/hero-squadra.webp" alt="La rosa dello Scafati Futsal Club al completo" fetchpriority="high">
+          </a>
+        </div>
+        <img class="hero__crest" src="/assets/img/brand/crest-black.png" alt="">
+        <span class="hero__caption">La squadra al completo</span>
+      </div>
     </div>
   </section>
 
-  <section class="section section--tight">
+  <!-- ================= SPONSOR WALL ================= -->
+  <a class="sponsor-strip" href="/partner/" aria-label="Vai alla pagina Partner">
+    <div class="wrap sponsor-strip__row">
+      <span>Metrò Pub Birreria</span><i>◆</i>
+      <span>Autofficina Cordenonese</span><i>◆</i>
+      <span>Cordenons Gomme</span><i>◆</i>
+      <span>Studi Dentistici Zoi</span><i>◆</i>
+
+      <span>Renova</span><i>◆</i>
+      <span>Pizzeria Centrale Cimpello</span><i>◆</i>
+      <span>Snoopy Pub</span><i>◆</i>
+      <span>Geometra Sharon Prata</span>
+    </div>
+  </a>
+
+  <!-- ================= SQUADRA TEASER ================= -->
+  <section class="section">
     <div class="wrap">
-      <div class="players-grid">
-        <div class="player reveal" style="--d:.1s" tabindex="0">
+      <div class="section-head section-head--split reveal">
+        <div>
+          <span class="eyebrow">La rosa</span>
+          <h2 class="h-display">I nostri <span class="accent">giocatori</span></h2>
+          <p class="lead">Passa il mouse sulle card per vedere l'esultanza. Ogni giocatore ha la sua figurina ufficiale.</p>
+        </div>
+        <a class="btn" href="/squadra/">Tutta la rosa
+          <span class="btn__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+        </a>
+      </div>
+      <div class="scroller">
+        <!-- SYNC:PLAYERS:START — generato da scripts/sync-home.js, non modificare a mano -->
+        <div class="player reveal" style="--d:.05s">
           <div class="player__frame">
-            <img class="base" src="/assets/img/players/emanuele-ballardin.webp" alt="Figurina di Emanuele Ballardin" loading="lazy">
+            <img class="base" src="/assets/img/players/thomas-accatante.webp" alt="Thomas Accatante" loading="lazy">
+            <img class="exult" src="/assets/img/players/thomas-accatante-exult.webp" alt="" loading="lazy">
+            <span class="player__shine"></span>
+          </div>
+          <div class="player__name">Thomas Accatante</div>
+        </div>
+        <div class="player reveal" style="--d:.12s">
+          <div class="player__frame">
+            <img class="base" src="/assets/img/players/leonardo-avon.webp" alt="Leonardo Avon" loading="lazy">
+            <img class="exult" src="/assets/img/players/leonardo-avon-exult.webp" alt="" loading="lazy">
+            <span class="player__shine"></span>
+          </div>
+          <div class="player__name">Leonardo Avon</div>
+        </div>
+        <div class="player reveal" style="--d:.19s">
+          <div class="player__frame">
+            <img class="base" src="/assets/img/players/emanuele-ballardin.webp" alt="Emanuele Ballardin" loading="lazy">
             <img class="exult" src="/assets/img/players/emanuele-ballardin-exult.webp" alt="" loading="lazy">
             <span class="player__shine"></span>
           </div>
           <div class="player__name">Emanuele Ballardin</div>
         </div>
-        <div class="player reveal" style="--d:.14s" tabindex="0">
+        <div class="player reveal" style="--d:.26s">
           <div class="player__frame">
-            <img class="base" src="/assets/img/players/giuseppe-calatozzo.webp" alt="Figurina di Giuseppe Calatozzo" loading="lazy">
+            <img class="base" src="/assets/img/players/giuseppe-calatozzo.webp" alt="Giuseppe Calatozzo" loading="lazy">
             <img class="exult" src="/assets/img/players/giuseppe-calatozzo-exult.webp" alt="" loading="lazy">
             <span class="player__shine"></span>
           </div>
           <div class="player__name">Giuseppe Calatozzo</div>
         </div>
-        <div class="player reveal" style="--d:.06s" tabindex="0">
+        <div class="player reveal" style="--d:.33s">
           <div class="player__frame">
-            <img class="base" src="/assets/img/players/riccardo-cozzi.webp" alt="Figurina di Riccardo Cozzi" loading="lazy">
+            <img class="base" src="/assets/img/players/domenico-costantino.webp" alt="Domenico Costantino" loading="lazy">
+            <span class="player__shine"></span>
+          </div>
+          <div class="player__name">Domenico Costantino</div>
+        </div>
+        <div class="player reveal" style="--d:.4s">
+          <div class="player__frame">
+            <img class="base" src="/assets/img/players/riccardo-cozzi.webp" alt="Riccardo Cozzi" loading="lazy">
             <img class="exult" src="/assets/img/players/riccardo-cozzi-exult.webp" alt="" loading="lazy">
             <span class="player__shine"></span>
           </div>
           <div class="player__name">Riccardo Cozzi</div>
         </div>
-        <div class="player reveal" style="--d:.1s" tabindex="0">
-          <div class="player__frame">
-            <img class="base" src="/assets/img/players/mattia-crainich.webp" alt="Figurina di Mattia Crainich" loading="lazy">
-            <img class="exult" src="/assets/img/players/mattia-crainich-exult.webp" alt="" loading="lazy">
-            <span class="player__shine"></span>
-          </div>
-          <div class="player__name">Mattia Crainich</div>
+        <!-- SYNC:PLAYERS:END -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GALLERIA TEASER ================= -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head section-head--split reveal">
+        <div>
+          <span class="eyebrow">Momenti</span>
+          <h2 class="h-display">Dalla nostra <span class="accent">gallery</span></h2>
         </div>
-        <div class="player reveal" style="--d:.14s" tabindex="0">
-          <div class="player__frame">
-            <img class="base" src="/assets/img/players/andrea-damico.webp" alt="Figurina di Andrea D'Amico" loading="lazy">
-            <img class="exult" src="/assets/img/players/andrea-damico-exult.webp" alt="" loading="lazy">
-            <span class="player__shine"></span>
-          </div>
-          <div class="player__name">Andrea D'Amico</div>
+        <a class="btn" href="/galleria/">Tutte le foto
+          <span class="btn__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+        </a>
+      </div>
+      <div class="masonry">
+        <!-- SYNC:GALLERY:START — generato da scripts/sync-home.js, non modificare a mano -->
+        <a href="/galleria/" class="reveal" style="--d:.05s"><img src="/assets/img/gallery/2025-26/2025-26-01.webp" alt="Foto ufficiale di squadra — Scafati Futsal Club, stagione 2025-26" loading="lazy"></a>
+        <a href="/galleria/" class="reveal" style="--d:.12s"><img src="/assets/img/gallery/2024-25/2024-25-01.webp" alt="Foto ufficiale di squadra in maglia da gara nera — Scafati Futsal Club, stagione 2024-25" loading="lazy"></a>
+        <a href="/galleria/" class="reveal" style="--d:.19s"><img src="/assets/img/gallery/2024-25/2024-25-02.webp" alt="Foto ufficiale di squadra in maglia bianca — Scafati Futsal Club, stagione 2024-25" loading="lazy"></a>
+        <a href="/galleria/" class="reveal" style="--d:.26s"><img src="/assets/img/gallery/2024-25/2024-25-03.webp" alt="Foto ufficiale di squadra in maglia bianca — Scafati Futsal Club, stagione 2024-25" loading="lazy"></a>
+        <a href="/galleria/" class="reveal" style="--d:.33s"><img src="/assets/img/gallery/2024-25/2024-25-04.webp" alt="Foto ufficiale di squadra in tuta — Scafati Futsal Club, stagione 2024-25" loading="lazy"></a>
+        <a href="/galleria/" class="reveal" style="--d:.4s"><img src="/assets/img/gallery/2024-25/2024-25-05.webp" alt="Foto di squadra festeggiante la promozione in Serie B CSI — Scafati Futsal Club, stagione 2024-25" loading="lazy"></a>
+        <!-- SYNC:GALLERY:END -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SOCIAL ================= -->
+  <section class="section" id="social">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Seguici</span>
+        <h2 class="h-display">I nostri <span class="accent">social</span></h2>
+        <p class="lead">Risultati, convocazioni, foto e momenti dallo spogliatoio: tutto passa prima da Facebook e Instagram.</p>
+      </div>
+      <div class="social-grid">
+        <div class="social-card reveal" style="--d:.05s">
+          <div class="bezel"><div class="bezel__core">
+            <div class="social-card__head">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.2-1.5 1.5-1.5h1.4V4.9c-.3 0-1.1-.1-2.1-.1-2.1 0-3.6 1.3-3.6 3.7V11H8.3v3h2.4v7h2.8Z"></path></svg></span>
+              <div><strong>Facebook</strong><small>@AsdScafatiFutsal</small></div>
+              <a class="btn" href="https://www.facebook.com/AsdScafatiFutsal/" target="_blank" rel="noopener">Apri
+                <span class="btn__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+              </a>
+            </div>
+            <div class="social-card__body">
+              <div class="social-card__fallback"><p>Caricamento del feed…<br>Se non appare, <a class="accent" href="https://www.facebook.com/AsdScafatiFutsal/" target="_blank" rel="noopener">apri la pagina Facebook</a>.</p></div>
+              <iframe title="Feed Facebook Scafati Futsal" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FAsdScafatiFutsal%2F&amp;tabs=timeline&amp;width=500&amp;height=700&amp;small_header=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=false" loading="lazy" allow="encrypted-media" scrolling="no"></iframe>
+            </div>
+          </div></div>
         </div>
-        <div class="player reveal" style="--d:.06s" tabindex="0">
-          <div class="player__frame">
-            <img class="base" src="/assets/img/players/max-lisai.webp" alt="Figurina di Max Lisai" loading="lazy">
-            <img class="exult" src="/assets/img/players/max-lisai-exult.webp" alt="" loading="lazy">
-            <span class="player__shine"></span>
-          </div>
-          <div class="player__name">Max Lisai</div>
-        </div>
-        <div class="player reveal" style="--d:.1s" tabindex="0">
-          <div class="player__frame">
-            <img class="base" src="/assets/img/players/riccardo-lucon.webp" alt="Figurina di Riccardo Lucon" loading="lazy">
-            <img class="exult" src="/assets/img/players/riccardo-lucon-exult.webp" alt="" loading="lazy">
-            <span class="player__shine"></span>
-          </div>
-          <div class="player__name">Riccardo Lucon</div>
-        </div>
-        <div class="player reveal" style="--d:.02s" tabindex="0">
-          <div class="player__frame">
-            <img class="base" src="/assets/img/players/francesco-marson.webp" alt="Figurina di Francesco Marson" loading="lazy">
-            <span class="player__shine"></span>
-          </div>
-          <div class="player__name">Francesco Marson</div>
-        </div>
-        <div class="player reveal" style="--d:.06s" tabindex="0">
-          <div class="player__frame">
-            <img class="base" src="/assets/img/players/sasha-qualano.webp" alt="Figurina di Sasha Qualano" loading="lazy">
-            <img class="exult" src="/assets/img/players/sasha-qualano-exult.webp" alt="" loading="lazy">
-            <span class="player__shine"></span>
-          </div>
-          <div class="player__name">Sasha Qualano</div>
-        </div>
-        <div class="player reveal" style="--d:.14s" tabindex="0">
-          <div class="player__frame">
-            <img class="base" src="/assets/img/players/luca-ravanelli.webp" alt="Figurina di Luca Ravanelli" loading="lazy">
-            <img class="exult" src="/assets/img/players/luca-ravanelli-exult.webp" alt="" loading="lazy">
-            <span class="player__shine"></span>
-          </div>
-          <div class="player__name">Luca Ravanelli</div>
-        </div>
-        <div class="player reveal" style="--d:.02s" tabindex="0">
-          <div class="player__frame">
-            <img class="base" src="/assets/img/players/giovanni-schettino.webp" alt="Figurina di Giovanni Schettino" loading="lazy">
-            <img class="exult" src="/assets/img/players/giovanni-schettino-exult.webp" alt="" loading="lazy">
-            <span class="player__shine"></span>
-          </div>
-          <div class="player__name">Giovanni Schettino</div>
+        <div class="social-card reveal" style="--d:.12s">
+          <div class="bezel"><div class="bezel__core">
+            <div class="social-card__head">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"></circle></svg></span>
+              <div><strong>Instagram</strong><small>@scafatifutsal</small></div>
+              <a class="btn" href="https://www.instagram.com/scafatifutsal/" target="_blank" rel="noopener">Apri
+                <span class="btn__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+              </a>
+            </div>
+            <div class="social-card__body">
+              <div class="social-card__fallback"><p>Caricamento del feed…<br>Se non appare, <a class="accent" href="https://www.instagram.com/scafatifutsal/" target="_blank" rel="noopener">apri il profilo Instagram</a>.</p></div>
+              <iframe title="Feed Instagram Scafati Futsal" src="https://www.instagram.com/scafatifutsal/embed" loading="lazy" allowtransparency="true"></iframe>
+            </div>
+          </div></div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ================= CTA ================= -->
   <section class="section section--tight">
     <div class="wrap">
       <div class="cta-band bezel reveal">
         <div class="bezel__core">
-          <span class="eyebrow">Gruppo</span>
-          <h2 class="h-display">Una squadra,<br>una <span class="accent">famiglia</span></h2>
+          <span class="eyebrow">Partner</span>
+          <h2 class="h-display">Al nostro fianco,<br>dentro e fuori dal <span class="accent">campo</span></h2>
           <div class="actions">
-            <a class="btn btn--solid" href="/galleria/">Guarda la gallery
-              <span class="btn__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-            </a>
-            <a class="btn" href="/#social">Seguici sui social
-              <span class="btn__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            <a class="btn btn--solid" href="/partner/">I nostri partner
+              <span class="btn__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
             </a>
           </div>
         </div>
@@ -179,6 +256,7 @@
     </div>
   </section>
 
+  <!-- ================= FOOTER ================= -->
   <footer class="footer">
     <div class="wrap">
       <div class="footer__grid">
@@ -200,20 +278,36 @@
         </nav>
         <div style="display:flex;gap:.8rem;">
           <a class="social-pill" href="https://www.facebook.com/AsdScafatiFutsal/" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.2-1.5 1.5-1.5h1.4V4.9c-.3 0-1.1-.1-2.1-.1-2.1 0-3.6 1.3-3.6 3.7V11H8.3v3h2.4v7h2.8Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.2-1.5 1.5-1.5h1.4V4.9c-.3 0-1.1-.1-2.1-.1-2.1 0-3.6 1.3-3.6 3.7V11H8.3v3h2.4v7h2.8Z"></path></svg>
           </a>
           <a class="social-pill" href="https://www.instagram.com/scafatifutsal/" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"></circle></svg>
           </a>
         </div>
       </div>
       <div class="footer__meta">
-        <span>© <span data-year></span> A.S.D. Scafati Futsal Club — Tutti i diritti riservati.</span>
+        <span>© <span data-year="">2026</span> A.S.D. Scafati Futsal Club — Tutti i diritti riservati.</span>
         <span>Fatto con passione per il futsal.</span>
       </div>
     </div>
   </footer>
 
+  <!-- ================= LIGHTBOX FOTO HERO ================= -->
+  <div class="lightbox">
+    <img src="" alt="">
+    <button class="lightbox__btn lightbox__btn--close" aria-label="Chiudi">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+    <button class="lightbox__btn lightbox__btn--prev" aria-label="Precedente" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg>
+    </button>
+    <button class="lightbox__btn lightbox__btn--next" aria-label="Successiva" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+    </button>
+    <span class="lightbox__count" style="display:none"></span>
+  </div>
+
   <script src="/assets/js/main.js"></script>
-</body>
-</html>
+
+
+</body></html>
