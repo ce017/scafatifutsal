@@ -337,6 +337,21 @@ body.menu-open .menu__social { opacity: 1; transform: none; }
 .player.is-flipped .player__frame img.exult { opacity: 1; }
 .player:hover .player__frame img.base:not(:only-child),
 .player.is-flipped .player__frame img.base:not(:only-child) { opacity: 0; }
+.player__frame .no-photo {
+  position: absolute; inset: 0;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 4% / 2.8%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.player__frame .no-photo img {
+  position: static;
+  width: 44%;
+  height: auto;
+  opacity: 0.14;
+}
 .player__shine {
   position: absolute; inset: 0; z-index: 2;
   border-radius: 4% / 2.8%;
