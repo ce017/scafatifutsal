@@ -504,15 +504,25 @@ body.menu-open .menu__social { opacity: 1; transform: none; }
   transform: rotate(-1.2deg);
 }
 .board-card p { color: var(--ink-soft); font-size: 0.93rem; margin-top: 0.6rem; }
-.board-card__head { display: flex; align-items: center; gap: 1.1rem; margin-bottom: 0.6rem; }
+/* board cards that carry a figurina photo: same visual size as the squadra page cards */
+.board-card--photo { grid-column: span 6; }
+.board-card__head { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 0.7rem; }
 .board-card__head .role { margin-bottom: 0; }
-.board-card__photo {
-  width: 84px; height: 84px; flex-shrink: 0;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: top center;
-  border: 2px solid var(--ink);
-  box-shadow: 3px 3px 0 var(--ink);
+.board-card__figurina {
+  width: 210px; flex-shrink: 0;
+  aspect-ratio: 720 / 1021;
+  border-radius: 4% / 2.8%;
+  box-shadow: 6px 6px 0 var(--ink);
+  overflow: hidden;
+}
+.board-card__figurina img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.board-card--photo h3 { font-size: 1.8rem; }
+@media (max-width: 900px) {
+  .board-card--photo { grid-column: span 12; }
+}
+@media (max-width: 640px) {
+  .board-card__head { flex-direction: column; align-items: flex-start; }
+  .board-card__figurina { width: 170px; }
 }
 
 /* ---- social embeds ---- */
