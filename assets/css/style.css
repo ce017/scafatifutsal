@@ -504,6 +504,16 @@ body.menu-open .menu__social { opacity: 1; transform: none; }
   transform: rotate(-1.2deg);
 }
 .board-card p { color: var(--ink-soft); font-size: 0.93rem; margin-top: 0.6rem; }
+.board-card__head { display: flex; align-items: center; gap: 1.1rem; margin-bottom: 0.6rem; }
+.board-card__head .role { margin-bottom: 0; }
+.board-card__photo {
+  width: 84px; height: 84px; flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
 
 /* ---- social embeds ---- */
 .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; align-items: stretch; }
