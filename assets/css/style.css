@@ -473,6 +473,7 @@ body.menu-open .menu__social { opacity: 1; transform: none; }
   transition: transform 0.4s var(--ease-pop);
 }
 .partner--wide .partner__chip img { max-height: 6.8rem; }
+.partner--wide .partner__chip img.partner__img--xl { max-height: 11.5rem; }
 .partner:hover .partner__chip img { transform: scale(1.06) rotate(-1deg); }
 .partner__chip--light { background: var(--white); }
 .partner__chip--dark { background: var(--ink); }
