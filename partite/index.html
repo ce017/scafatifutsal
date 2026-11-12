@@ -161,6 +161,8 @@ tr:last-child td{border-bottom:0}
 .colseg button[data-v="B"][aria-pressed="true"]{background:#2f6fe0;color:#fff}
 .copybox{min-height:160px;font-size:13px;font-family:ui-monospace,Menlo,Consolas,monospace}
 .actions.col{flex-direction:column}
+h2.season{margin-top:8px;color:var(--fg)}
+.pbtn.out{opacity:.6;text-decoration:line-through}
 .where{text-align:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-top:-6px}
 .chip{position:relative}
 .chip .tm{position:absolute;top:3px;right:5px;font-style:normal;font-size:11px;font-weight:700;opacity:.85;font-variant-numeric:tabular-nums}
@@ -634,7 +636,7 @@ function convCard(m){
   return `<div class="card">
     <div class="row between"><h2>Convocati di oggi</h2><span class="count">${c.length}</span></div>
     <p class="help small">Scegli dalla rosa chi gioca questa partita. Solo loro compariranno quando segni chi è in campo e nei gol.</p>
-    <div class="grid">${S.rosa.map(p=>playerChip(p.id,c.includes(p.id),"conv")).join("")}</div>
+    <div class="grid">${S.rosa.filter(p=>!p.fuori||c.includes(p.id)).map(p=>playerChip(p.id,c.includes(p.id),"conv")).join("")}</div>
     <div class="actions">
       <button class="btn sm" data-act="gorosa">Modifica rosa</button>
       <button class="btn sm" data-act="convall">Tutti</button>
@@ -671,12 +673,19 @@ function newMatchForm(){
 }
 
 /* ---------- statistiche e analisi ---------- */
-const comps=()=>[...new Set(Object.values(S.matches).map(m=>(m.competizione||"").trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+/* stagione sportiva dalla data: le partite da agosto a luglio fanno parte della stessa stagione, es. 2026/27 */
+const seasonOfDate=d=>{const[y,mo]=(d||today()).split("-").map(Number);const a=mo>=8?y:y-1;return a+"/"+String(a+1).slice(2)};
+const seasonOf=m=>seasonOfDate(m.data);
+const seasons=()=>[...new Set(Object.values(S.matches).map(seasonOf).concat([seasonOfDate(today())]))].sort().reverse();
+function curSeason(){if(S.season==="tutte")return"tutte";if(!S.season||!seasons().includes(S.season)){const own=Object.values(S.matches).map(seasonOf);S.season=own.includes(seasonOfDate(today()))||!own.length?seasonOfDate(today()):own.sort().reverse()[0]}return S.season}
+const inSeason=m=>curSeason()==="tutte"||seasonOf(m)===curSeason();
+const seasonLabel=()=>curSeason()==="tutte"?"tutte le stagioni":"stagione "+curSeason();
+const comps=()=>[...new Set(Object.values(S.matches).filter(inSeason).map(m=>(m.competizione||"").trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
 const isAll=()=>S.scope==="all"||!cur();
 function scopeMatches(){
   if(!isAll())return[cur()];
   if(S.comp&&!comps().includes(S.comp))S.comp="";
-  let ms=Object.values(S.matches);
+  let ms=Object.values(S.matches).filter(inSeason);
   if(S.comp)ms=ms.filter(m=>(m.competizione||"").trim()===S.comp);
   return ms.sort((a,b)=>(a.data||"").localeCompare(b.data||""));
 }
@@ -752,19 +761,23 @@ function viewStats(){
   const ms=scopeMatches();
   const cs=comps();
   const sg=n=>n>0?`<span class="pos">+${n}</span>`:n<0?`<span class="neg">${n}</span>`:"0";
-  const compSel=scope==="all"&&cs.length?`<label class="row" style="flex-wrap:nowrap"><span class="muted small" style="flex:0 0 auto">Competizione</span>
+  const nSeason=Object.values(S.matches).filter(inSeason).length;
+  const ss0=seasons();
+  const seasonSel=scope==="all"?`<label class="row" style="flex-wrap:nowrap"><span class="muted small" style="flex:0 0 92px">Stagione</span>
+    <select id="seasonsel">${ss0.map(x=>`<option value="${x}" ${curSeason()===x?"selected":""}>${x}</option>`).join("")}${ss0.length>1?`<option value="tutte" ${curSeason()==="tutte"?"selected":""}>Tutte le stagioni</option>`:""}</select></label>`:"";
+  const compSel=scope==="all"&&cs.length?`<label class="row" style="flex-wrap:nowrap"><span class="muted small" style="flex:0 0 92px">Competizione</span>
     <select id="compsel">${[["","Tutte"]].concat(cs.map(c=>[c,c])).map(([v,l])=>`<option value="${esc(v)}" ${S.comp===v?"selected":""}>${esc(l)}</option>`).join("")}</select></label>`:"";
   const head=`<div class="row between">
       <div class="seg" style="background:var(--surface-2)" role="group" aria-label="Periodo">
         <button data-act="scope" data-v="cur" aria-pressed="${scope==="cur"}" ${cur()?"":"disabled"} style="color:var(--fg)">Questa partita</button>
-        <button data-act="scope" data-v="all" aria-pressed="${scope==="all"}" style="color:var(--fg)">Tutte (${all.length})</button>
+        <button data-act="scope" data-v="all" aria-pressed="${scope==="all"}" style="color:var(--fg)">Stagione (${nSeason})</button>
       </div>
-    </div>${compSel}`;
+    </div>${seasonSel}${compSel}`;
   const actions=`<div class="actions col">
       <button class="btn primary" data-act="copy">Copia testo per il mister</button>
       ${dl?`<div class="actions"><button class="btn" data-act="xlsx">Scarica Excel</button><button class="btn" data-act="pdf">${scope==="cur"?"Referto PDF":"Report PDF"}</button></div>`:""}
     </div><div id="copyout"></div>`;
-  if(!ms.length)return `<div class="ev">${head}<div class="empty">Nessuna partita in «${esc(S.comp)}».</div></div>`;
+  if(!ms.length)return `<div class="ev">${head}<div class="empty">Nessuna partita ${S.comp?`in «${esc(S.comp)}»`:`nella ${esc(seasonLabel())}`}.</div></div>`;
   const {rows,gf,gs}=statsFor(ms);
   let rec="";
   if(scope==="all"){const r={V:0,N:0,P:0};ms.forEach(m=>{const[a,b]=score(m);r[a>b?"V":a<b?"P":"N"]++});rec=` · ${r.V} vinte, ${r.N} pari, ${r.P} perse`}
@@ -832,7 +845,7 @@ function viewList(){
   return `<div class="ev">
     <div class="card"><h2>Nuova partita</h2>${newMatchForm()}</div>
     <h2>Partite salvate</h2>
-    ${all.length?all.map(m=>{const[f,s]=score(m);return `<div class="mrow" id="mrow-${m.id}"><button class="match ${m.id===S.currentId?"cur":""}" data-act="open" data-id="${m.id}">
+    ${all.length?all.map((m,i)=>{const[f,s]=score(m);const sh=i===0||seasonOf(all[i-1])!==seasonOf(m)?`<h2 class="season">Stagione ${seasonOf(m)}</h2>`:"";return sh+`<div class="mrow" id="mrow-${m.id}"><button class="match ${m.id===S.currentId?"cur":""}" data-act="open" data-id="${m.id}">
       <span><b>${esc(teams(m," – "))}</b><span class="small muted">${fmtDate(m.data)} · ${campo(m).toLowerCase()}${m.competizione?" · "+esc(m.competizione):""} · ${m.gol.length} gol segnati</span></span>
       <span class="count">${sc(m,f,s)}</span></button>
       <button class="edit" data-act="medit" data-id="${m.id}" aria-label="Modifica partita contro ${esc(m.avversario)}">Modifica</button>
@@ -840,7 +853,8 @@ function viewList(){
     <div class="card">
       <h2 id="rosa">Rosa</h2>
       <p class="help small">Tocca un nome per correggerlo, aggiungere il numero di maglia o toglierlo.</p>
-      <div class="plist">${S.rosa.map(p=>`<button class="pbtn" data-act="pedit" data-id="${esc(p.id)}">${p.numero?`<span class="nr">${esc(p.numero)}</span>`:""}${esc(p.cognome)} <span>${esc(p.nome)}</span></button>`).join("")}</div>
+      <div class="plist">${S.rosa.filter(p=>!p.fuori).map(p=>`<button class="pbtn" data-act="pedit" data-id="${esc(p.id)}">${p.numero?`<span class="nr">${esc(p.numero)}</span>`:""}${esc(p.cognome)} <span>${esc(p.nome)}</span></button>`).join("")}</div>
+      ${S.rosa.some(p=>p.fuori)?`<p class="help small">Non più in rosa (restano nelle statistiche):</p><div class="plist">${S.rosa.filter(p=>p.fuori).map(p=>`<button class="pbtn out" data-act="pedit" data-id="${esc(p.id)}">${esc(p.cognome)} <span>${esc(p.nome)}</span></button>`).join("")}</div>`:""}
       <form id="addp" class="row" autocomplete="off" style="flex-wrap:nowrap">
         <input id="ap-nome" placeholder="Nome" style="min-width:0"><input id="ap-cogn" placeholder="Cognome" required style="min-width:0">
         <button class="btn sm primary" type="submit">Aggiungi</button>
@@ -948,7 +962,7 @@ function exportText(){
   if(ms.length===1&&!isAll())return matchText(ms[0])+"\n"+statsText(ms);
   const[gf,gs]=ms.reduce((a,m)=>{const[x,y]=score(m);return[a[0]+x,a[1]+y]},[0,0]);
   const r={V:0,N:0,P:0};ms.forEach(m=>{const[a,b]=score(m);r[a>b?"V":a<b?"P":"N"]++});
-  const L=[`*📋 RIEPILOGO${S.comp?" "+S.comp.toUpperCase():""}*`,`${ms.length} partite: ${r.V} V · ${r.N} N · ${r.P} P · gol ${gf}-${gs}`,""];
+  const L=[`*📋 RIEPILOGO ${seasonLabel().toUpperCase()}${S.comp?" · "+S.comp.toUpperCase():""}*`,`${ms.length} partite: ${r.V} V · ${r.N} N · ${r.P} P · gol ${gf}-${gs}`,""];
   ms.forEach(m=>L.push(`${fmtDate(m.data)}  ${resultLine(m)}`));
   const top=lineupStats(ms).fives.filter(f=>f.gf+f.gs>=2)[0];
   return L.join("\n")+"\n"+statsText(ms)+(top?`\n\n🏆 Quintetto migliore: ${top.ids.map(nm).join(", ")} (${top.gf} fatti, ${top.gs} subiti)`:"");
@@ -960,7 +974,7 @@ const LIBS={xlsx:["https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.j
 const loadedLib={};
 function loadScript(src){return loadedLib[src]||(loadedLib[src]=new Promise((ok,ko)=>{const s=document.createElement("script");s.src=src;s.onload=ok;s.onerror=()=>{delete loadedLib[src];ko(new Error("load"))};document.head.appendChild(s)}))}
 async function needLib(k){for(const s of LIBS[k])await loadScript(s)}
-const fileTag=()=>{const m=cur();return isAll()?(S.comp?S.comp.replace(/[^a-z0-9]+/gi,"-"):"tutte")+"-"+today():m.avversario.replace(/[^a-z0-9]+/gi,"-")+"-"+m.data};
+const fileTag=()=>{const m=cur();return isAll()?(curSeason()==="tutte"?"tutte-le-stagioni":"stagione-"+curSeason().replace("/","-"))+(S.comp?"-"+S.comp.replace(/[^a-z0-9]+/gi,"-"):"")+"-"+today():m.avversario.replace(/[^a-z0-9]+/gi,"-")+"-"+m.data};
 const xDate=s=>{if(!s)return null;const[y,mo,d]=s.split("-").map(Number);return new Date(Date.UTC(y,mo-1,d))};
 
 /* ---------- Excel ---------- */
@@ -1122,7 +1136,7 @@ async function buildPdf(){
     playerTable(false);
   }else{
     const r={V:0,N:0,P:0};let gf=0,gsum=0;ms.forEach(m=>{const[a,b]=score(m);gf+=a;gsum+=b;r[a>b?"V":a<b?"P":"N"]++});
-    header(`REPORT ${S.comp?S.comp.toUpperCase():"STAGIONE"}`,`${r.V} V  ·  ${r.N} N  ·  ${r.P} P`,`${ms.length} partite  ·  gol fatti ${gf}, subiti ${gsum}  ·  aggiornato al ${fmtDate(today())}`);
+    header(`REPORT ${seasonLabel().toUpperCase()}${S.comp?"  ·  "+S.comp.toUpperCase():""}`,`${r.V} V  ·  ${r.N} N  ·  ${r.P} P`,`${ms.length} partite  ·  gol fatti ${gf}, subiti ${gsum}  ·  aggiornato al ${fmtDate(today())}`);
     section("Partite");
     table(["Data","Competizione","Partita","Risultato","Falli noi","Falli avv.","Cartellini noi"],ms.map(m=>{const[a,b]=score(m);const cr=CR(m).filter(c=>c.lato==="N");
       return[fmtDate(m.data),m.competizione||"",teams(m," - "),{content:sc(m,a,b),styles:{fontStyle:"bold",halign:"center",textColor:a>b?GREEN:a<b?RED:GREY}},
@@ -1209,8 +1223,9 @@ function renderPlayerSheet(){
       <div style="flex:1;min-width:0"><label class="small muted" for="pe-cogn">Cognome</label><input id="pe-cogn" value="${esc(p.cognome)}"></div>
       <div style="flex:0 0 76px"><label class="small muted" for="pe-num">N° maglia</label><input id="pe-num" inputmode="numeric" pattern="[0-9]*" value="${esc(p.numero||"")}"></div>
     </div>
-    <p class="help small">${u?`Compare in ${u} ${u===1?"partita":"partite"}: correggendo il nome si aggiorna anche lì. Per non perdere i suoi dati non si può togliere dalla rosa.`:"Non compare in nessuna partita: puoi anche toglierlo dalla rosa."}</p>
+    <p class="help small">${u?`Compare in ${u} ${u===1?"partita":"partite"}: correggendo il nome si aggiorna anche lì. Se non gioca più con voi segnalo «fuori rosa»: non comparirà più tra i convocati, ma i suoi dati restano nelle statistiche.`:"Non compare in nessuna partita: puoi anche toglierlo dalla rosa."}</p>
     <div id="p-confirm"></div>
+    ${u?`<button class="btn" data-act="pfuori">${p.fuori?"Rimetti in rosa":"Segna fuori rosa"}</button>`:""}
     <div class="actions">${u?"":`<button class="btn danger" data-act="pdel">Togli</button>`}<button class="btn" data-act="pcancel">Annulla</button><button class="btn primary" data-act="psave">Salva</button></div>
   </div></div>`;
 }
@@ -1235,7 +1250,7 @@ document.addEventListener("click",async e=>{
       const i=m.convocati.indexOf(id);
       if(i>=0){m.convocati.splice(i,1);m.onField=m.onField.filter(x=>x!==id)}else m.convocati.push(id);
       save(m);render();break}
-    case "convall":convEdit=true;m.convocati=S.rosa.map(p=>p.id);save(m);render();break;
+    case "convall":convEdit=true;m.convocati=S.rosa.filter(p=>!p.fuori).map(p=>p.id);save(m);render();break;
     case "convnone":m.convocati=[];m.onField=[];save(m);render();break;
     case "convedit":convEdit=true;render();break;
     case "convdone":convEdit=false;render();window.scrollTo(0,0);break;
@@ -1299,6 +1314,7 @@ document.addEventListener("click",async e=>{
       const num=$("#pe-num").value.replace(/[^0-9]/g,"");
       S.rosa=S.rosa.map(p=>p.id===draftP.id?Object.assign({},p,{nome:n,cognome:c,numero:num}):p);
       S.rosaAt=Date.now();pending.add("rosa");draftP=null;save();push("rosa");renderPlayerSheet();render();break}
+    case "pfuori":S.rosa=S.rosa.map(p=>p.id===draftP.id?Object.assign({},p,{fuori:!p.fuori}):p);S.rosaAt=Date.now();pending.add("rosa");draftP=null;save();push("rosa");renderPlayerSheet();render();break;
     case "pdel":$("#p-confirm").innerHTML=`<div class="card"><b>Togliere ${esc(nm(draftP.id))} dalla rosa?</b><div class="actions"><button class="btn" data-act="pnop">No</button><button class="btn danger" data-act="pdelok">Sì, togli</button></div></div>`;break;
     case "pnop":$("#p-confirm").innerHTML="";break;
     case "pdelok":S.rosa=S.rosa.filter(p=>p.id!==draftP.id);S.rosaAt=Date.now();pending.add("rosa");draftP=null;save();push("rosa");renderPlayerSheet();render();break;
@@ -1358,7 +1374,8 @@ document.addEventListener("change",async e=>{
       save();retryPending();render(true);
     }catch(err){bkMsg=`<p class="help small">Questo file non è un backup valido.</p>`;render(true)}
     e.target.value="";return}
-if(e.target.id==="compsel"){S.comp=e.target.value;persistLocal();render(true)}});
+if(e.target.id==="compsel"){S.comp=e.target.value;persistLocal();render(true)}
+  if(e.target.id==="seasonsel"){S.season=e.target.value;S.comp="";persistLocal();render(true)}});
 document.addEventListener("submit",e=>{
   if(e.target.id==="lg")return;
   e.preventDefault();
